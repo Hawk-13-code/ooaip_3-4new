@@ -28,10 +28,10 @@ public class OrderManager {
 
     public void printAllOrders() {
         if (orders.isEmpty()) {
-            System.out.println("РќРµС‚ С‚РµРєСѓС‰РёС… Р·Р°РєР°Р·РѕРІ.");
+            System.out.println("Нет текущих заказов.");
         } else {
             for (Order order : orders.values()) {
-                System.out.println("Р—Р°РєР°Р· ID: " + order.getOrderId() + ", РЎС‚РѕР»: " + order.getTableNumber() + ", РўРѕРІР°СЂС‹: " + order.getItems());
+                System.out.println("Заказ ID: " + order.getOrderId() + ", Стол: " + order.getTableNumber() + ", Товары: " + order.getItems());
             }
         }
     }

@@ -1,3 +1,4 @@
+//ресторан, паттерн команда
 package com.example;
 
 public class Main {
@@ -5,7 +6,7 @@ public class Main {
         OrderManager orderManager = new OrderManager();
         OrderManagerInvoker invoker = new OrderManagerInvoker();
 
-        // РЎРѕР·РґР°РµРј Р·Р°РєР°Р·С‹
+        // Создаем заказы
         Order order1 = new Order(1, 5);
         order1.addItem("Pizza");
         order1.addItem("Coke");
@@ -14,31 +15,31 @@ public class Main {
         order2.addItem("Burger");
         order2.addItem("Fries");
 
-        // Р”РѕР±Р°РІР»СЏРµРј Р·Р°РєР°Р·С‹
+        // Добавляем заказы
         Command addOrderCommand1 = new AddOrderCommand(orderManager, order1);
         Command addOrderCommand2 = new AddOrderCommand(orderManager, order2);
 
         invoker.executeCommand(addOrderCommand1);
         invoker.executeCommand(addOrderCommand2);
 
-        // Р РµРґР°РєС‚РёСЂСѓРµРј Р·Р°РєР°Р·
+        // Редактируем заказ
         Command editOrderCommand = new EditOrderCommand(orderManager, 1, "Coke", "Pepsi");
         invoker.executeCommand(editOrderCommand);
 
-        // РћС‚РјРµРЅСЏРµРј Р·Р°РєР°Р·
+        // Отменяем заказ
         Command deleteOrderCommand = new DeleteOrderCommand(orderManager, 2);
         invoker.executeCommand(deleteOrderCommand);
 
-        // РџРµС‡Р°С‚Р°РµРј РІСЃРµ Р·Р°РєР°Р·С‹
-        System.out.println("РўРµРєСѓС‰РёРµ Р·Р°РєР°Р·С‹:");
+        // Печатаем все заказы
+        System.out.println("Текущие заказы:");
         orderManager.printAllOrders();
 
-        // РћС‚РјРµРЅСЏРµРј РїРѕСЃР»РµРґРЅРёРµ РґРµР№СЃС‚РІРёСЏ
-        System.out.println("\nРћС‚РјРµРЅСЏРµРј РїРѕСЃР»РµРґРЅРёРµ РґРµР№СЃС‚РІРёСЏ.");
-        invoker.undoLastCommand(); // РћС‚РјРµРЅР° СѓРґР°Р»РµРЅРёСЏ Р·Р°РєР°Р·Р°
+        // Отменяем последние действия
+        System.out.println("\nОтменяем последние действия.");
+        invoker.undoLastCommand(); // Отмена удаления заказа
 
-        // РџРµС‡Р°С‚Р°РµРј РІСЃРµ Р·Р°РєР°Р·С‹ РїРѕСЃР»Рµ РѕС‚РјРµРЅС‹
-        System.out.println("\nРўРµРєСѓС‰РёРµ Р·Р°РєР°Р·С‹ РїРѕСЃР»Рµ РѕС‚РјРµРЅС‹:");
+        // Печатаем все заказы после отмены
+        System.out.println("\nТекущие заказы после отмены:");
         orderManager.printAllOrders();
     }
 }
